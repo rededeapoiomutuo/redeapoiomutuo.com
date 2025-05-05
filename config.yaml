@@ -15,6 +15,7 @@ params:
   favicon: img/favicon.ico
   # dateFormat: "January 2, 2006"
   commit: false
+  
   rss: true
   comments: false
   readingTime: true
@@ -43,3 +44,7 @@ menu:
     - name: Contacto
       url: page/contact/
       weight: 3
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

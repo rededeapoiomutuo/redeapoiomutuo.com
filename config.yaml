@@ -1,0 +1,45 @@
+baseURL: redeapoiomutuo.com/
+defaultContentLanguage: pt
+title: Rede de Apoio Mútuo
+# theme: beautifulhugo
+pygmentsUseClasses: true
+pygmentsCodeFences: true
+pygmentsCodefencesGuessSyntax: true
+
+params:
+  subtitle: Organização de apoio mútuo feita por nós e para nós. Somos trabalhadores, moradores, imigrantes unides porque só assim somos fortes!
+  mainSections:
+    - post
+    - posts
+  logo: img/avatar-icon.png
+  favicon: img/favicon.ico
+  # dateFormat: "January 2, 2006"
+  commit: false
+  rss: true
+  comments: false
+  readingTime: true
+  wordCount: true
+  useHLJS: true
+  socialShare: true
+  delayDisqus: true
+  showRelatedPosts: true
+
+author:
+  name: Rede de Apoio Mútuo
+  website: https://redeapoiomutuo.com/
+  email: ramlx@riseup.net
+  instagram: redeapoiomutuo
+  facebook: RededeApoioMutuo
+  github: rededeapoiomutuo
+
+menu:
+  main:
+    - name: Inicio
+      url: ""
+      weight: 1
+    - name: Sobre
+      url: page/about/
+      weight: 3
+    - name: Contacto
+      url: page/contact/
+      weight: 3

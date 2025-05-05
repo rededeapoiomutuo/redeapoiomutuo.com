@@ -1,25 +1,39 @@
-{{- if eq .Kind "taxonomyTerm" }}
-  {{- range $key, $value := .Data.Terms.ByCount }}
-    {{- $.Scratch.Add "most_used" (slice $value.Name) }}
+{{- if .Kind }} {{- /* Check if .Kind is set */}}
+  {{- if eq .Kind "taxonomyTerm" }}
+    {{- if .Data }} {{- /* Check if .Data is available */}}
+      {{- range $key, $value := .Data.Terms.ByCount }}
+        {{- $.Scratch.Add "most_used" (slice $value.Name) }}
+      {{- end }}
+      {{- $most_used := $.Scratch.Get "most_used" -}}
+      {{- if not $most_used }}
+        {{- $description := printf "A full overview of all pages with %s, ordered by %s" .Data.Plural .Data.Singular | truncate 180 }}
+        {{- $.Scratch.Set "Description" $description }}
+      {{- else }}
+        {{- $description := printf "A full overview of all pages with %s, ordered by %s, such as: %s" .Data.Plural .Data.Singular ( delimit $most_used ", " ", and " ) | truncate 180 }}
+        {{- $.Scratch.Set "Description" $description }}
+      {{- end }}
+      {{- $title := printf "Overview of all pages with %s, ordered by %s" .Data.Plural .Data.Singular }}
+      {{- $.Scratch.Set "Title" $title }}
+    {{- else }} {{- /* Fallback if .Data is missing for taxonomyTerm */}}
+      {{- $.Scratch.Set "Description" (printf "Pages related to %s" .Title | default "Taxonomy term page") }}
+      {{- $.Scratch.Set "Title" (printf "Term: %s" .Title | default "Taxonomy Term") }}
+    {{- end }}
+  {{- else if eq .Kind "taxonomy" }}
+    {{- if and .Data .Pages }} {{- /* Check if .Data and .Pages are available */}}
+      {{- $description := printf "Overview of all pages with the %s #%s, such as: %s" .Data.Singular $.Title ( index .Pages 0).Title | truncate 160 }}
+      {{- $.Scratch.Set "Description" $description }}
+      {{- $title := printf "Overview of all pages with the %s #%s" .Data.Singular $.Title }}
+      {{- $.Scratch.Set "Title" $title }}
+    {{- else }} {{- /* Fallback if .Data or .Pages is missing for taxonomy */}}
+      {{- $.Scratch.Set "Description" (printf "All %s" .Title | default "Taxonomy list page") }}
+      {{- $.Scratch.Set "Title" (printf "Taxonomy: %s" .Title | default "Taxonomy List") }}
+    {{- end }}
+  {{- else }} {{- /* Handles page, home, section, etc. */}}
+    {{- $.Scratch.Set "Description" ( .Description | default .Params.subtitle | default .Summary | default .Site.Params.description ) }}
+    {{- $.Scratch.Set "Title" ( .Title | default .Site.Title ) }}
   {{- end }}
-  {{- if not ($.Scratch.Get "most_used") }}
-    {{- $description := printf "A full overview of all pages with %s, ordered by %s" .Data.Plural .Data.Singular | truncate 180 }}
-    {{- $.Scratch.Set "Description" $description }}
-  {{- else }}
-    {{- $description := printf "A full overview of all pages with %s, ordered by %s, such as: %s" .Data.Plural .Data.Singular ( delimit ( $.Scratch.Get "most_used" ) ", " ", and " ) | truncate 180 }}
-    {{- $.Scratch.Set "Description" $description }}
-  {{- end }}
-
-  {{- $title := printf "Overview of all pages with %s, ordered by %s" .Data.Plural .Data.Singular }}
-  {{- $.Scratch.Set "Title" $title }}
-{{- else if eq .Kind "taxonomy" }}
-  {{- $description := printf "Overview of all pages with the %s #%s, such as: %s" .Data.Singular $.Title ( index .Pages 0).Title | truncate 160 }}
-  {{- $.Scratch.Set "Description" $description }}
-
-  {{- $title := printf "Overview of all pages with the %s #%s" .Data.Singular $.Title }}
-  {{- $.Scratch.Set "Title" $title }}
-{{- else }}
-  {{- $.Scratch.Set "Description" ( .Description | default .Params.subtitle | default .Summary ) }}
+{{- else }} {{- /* Fallback if .Kind is not set at all */}}
+  {{- $.Scratch.Set "Description" ( .Description | default .Params.subtitle | default .Summary | default .Site.Params.description ) }}
   {{- $.Scratch.Set "Title" ( .Title | default .Site.Title ) }}
 {{- end }}
 

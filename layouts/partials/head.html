@@ -96,16 +96,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
   {{- end -}}
 
-  {{/* layouts/partials/head.html */}}
-  {{/* ... other head content ... */}}
-  
-  {{ if hugo.IsServer }}
-    {{/* Code that should only run with 'hugo server' */}}
-    {{/* For example, accessing .IsServer or adding dev-only scripts */}}
-    <p>Running in server mode!</p>
-  {{ else }}
-    {{/* Code for production build */}}
+  {{/* Check if running in server mode before using .IsServer */}}
+  {{ if hugo.IsServer }} {{/* Or whatever code is on line 102 */}}
+    {{/* Code that relies on .IsServer or is only for development */}}
+    <script src="/dev-only.js"></script>
   {{ end }}
   
-  {{/* ... rest of head content ... */}}
   

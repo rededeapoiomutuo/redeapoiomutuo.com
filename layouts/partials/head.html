@@ -96,7 +96,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
   {{- end -}}
 
-{{- partial "head_custom.html" . }}
-{{- if not hugo.IsServer -}}
-  {{ template "_internal/google_analytics.html" . }}
-{{- end -}}
+  {{/* layouts/partials/head.html */}}
+  {{/* ... other head content ... */}}
+  
+  {{ if hugo.IsServer }}
+    {{/* Code that should only run with 'hugo server' */}}
+    {{/* For example, accessing .IsServer or adding dev-only scripts */}}
+    <p>Running in server mode!</p>
+  {{ else }}
+    {{/* Code for production build */}}
+  {{ end }}
+  
+  {{/* ... rest of head content ... */}}
+  

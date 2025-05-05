@@ -110,10 +110,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
   {{- end }}
 
-  {{/* Conditionally include development-only scripts */}}
   {{ if hugo.IsServer }}
-    {{/* Code that relies on .IsServer or is only for development */}}
-    {{/* Example: <script src="/dev-only.js"></script> */}}
     <script src="/dev-only.js"></script>
   {{ end }}
   

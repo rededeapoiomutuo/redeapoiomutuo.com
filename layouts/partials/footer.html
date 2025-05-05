@@ -46,9 +46,9 @@
           <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0 1.0 Universal</a>
           {{ if .Site.Params.since }}
             {{ .Site.Params.since }} - {{ .Site.Lastmod.Format "2006" }}
-          {{ else }}
-            {{ .Site.Lastmod.Format "2006" }}
           {{ end }}
+          {{/* Use .Lastmod for the page's last modification date */}}
+          {{ .Lastmod.Format "2006" }}
 
           {{ if .Site.Title }}
             &nbsp;&bull;&nbsp;

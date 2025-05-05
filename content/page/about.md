@@ -1,16 +1,12 @@
 ---
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: (RAM Lisboa)
+subtitle: Rede Apoio Mútuo de Lisboa 
 comments: false
 ---
+Organização de apoio mútuo feita por nós e para nós. Somos trabalhadores, moradores, imigrantes unides porque só assim somos fortes!!
 
-My name is Inigo Montoya. I have the following qualities:
+### Nossos Projetos
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+* **Cantina Voluntaria**: Fazemos uma cantina popular todos os sábados as 11:30h até as 15:00h na Quinta do Ferro, Rua C nº 70.
+* **RAMigrante**: Aula de Portugues com Migrantes na Sirigaita todas as quartas as 18:00h.
 
-What else do you need?
-
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.

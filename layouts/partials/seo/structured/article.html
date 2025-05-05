@@ -3,7 +3,9 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : "{{ if .Params.author -}}{{ .Params.author }}{{- else if .Site.Author.name -}}{{ .Site.Author.name }}{{- end }}"
+    "@type": "Person",
+    "name" : "{{ if .Params.author -}}
+      {{ .Params.author | safeHTML }}{{- else if .Site.Params.Author.name -}}{{ .Site.Params.Author.name | safeHTML }}{{- end }}"
   },
   "headline": "{{ .Title }}",
   "description" : "{{ if .Description }}{{ .Description | plainify }}{{ else }}{{if .IsPage}}{{ .Summary | plainify  }}{{ end }}{{ end }}",
